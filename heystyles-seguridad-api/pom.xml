@@ -14,7 +14,7 @@
     </parent>
 
     <properties>
-        <start-class>com.heystyles.academico.api.SeguridadApp</start-class>
+        <start-class>com.heystyles.seguridad.api.SeguridadApp</start-class>
     </properties>
 
     <dependencies>
