@@ -1,5 +1,10 @@
 package com.heystyles.seguridad.api.config;
 
+import com.heystyles.common.service.ConverterService;
+import com.heystyles.common.service.ValidationService;
+import com.heystyles.common.service.impl.ConverterServiceImpl;
+import com.heystyles.common.service.impl.ValidationServiceImpl;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +21,18 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import java.util.Locale;
 
 @Configuration
+@EnableCaching
 public class GeneralConfig {
+
+    @Bean
+    public ConverterService converterService() {
+        return new ConverterServiceImpl();
+    }
+
+    @Bean
+    public ValidationService validationService() {
+        return new ValidationServiceImpl();
+    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

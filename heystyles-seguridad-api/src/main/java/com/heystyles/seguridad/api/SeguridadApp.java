@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = {
         "com.heystyles.seguridad.api.async",
+        "com.heystyles.seguridad.api.auth0",
         "com.heystyles.seguridad.api.config",
         "com.heystyles.seguridad.api.controller",
         "com.heystyles.seguridad.api.converter",

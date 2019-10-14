@@ -8,8 +8,8 @@
     <packaging>jar</packaging>
 
     <parent>
-        <artifactId>seguirdad</artifactId>
         <groupId>com.heystyles</groupId>
+        <artifactId>seguridad</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
@@ -18,6 +18,18 @@
     </properties>
 
     <dependencies>
+        <!-- HeyStyles -->
+        <dependency>
+            <groupId>com.heystyles</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.heystyles</groupId>
+            <artifactId>seguridad-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- Spring WEB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

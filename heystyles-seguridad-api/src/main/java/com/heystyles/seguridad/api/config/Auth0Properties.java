@@ -14,10 +14,7 @@ public class Auth0Properties {
     private String clientSecret;
     private String domain;
     private String clientId;
-    private String audience;
-    private String scope;
     private String authorizationApi;
-    private String tokenAudience;
     private String managementAudience;
     private String urlApi;
     private List<String> permissionsBase;
@@ -46,36 +43,12 @@ public class Auth0Properties {
         this.clientId = clientId;
     }
 
-    public String getAudience() {
-        return audience;
-    }
-
-    public void setAudience(String audience) {
-        this.audience = audience;
-    }
-
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
     public String getAuthorizationApi() {
         return authorizationApi;
     }
 
     public void setAuthorizationApi(String authorizationApi) {
         this.authorizationApi = authorizationApi;
-    }
-
-    public String getTokenAudience() {
-        return tokenAudience;
-    }
-
-    public void setTokenAudience(String tokenAudience) {
-        this.tokenAudience = tokenAudience;
     }
 
     public String getManagementAudience() {
