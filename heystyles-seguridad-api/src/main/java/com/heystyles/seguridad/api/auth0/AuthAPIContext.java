@@ -22,6 +22,11 @@ public class AuthAPIContext {
     @Qualifier("managementAPIToken")
     private TokenHelper managementAPIToken;
 
+
+    public AuthorizationAPI newAuthorizationAPI() {
+        return new AuthorizationAPI(properties.getAuthorizationApi(), authorizationAPIToken.getAccessToken());
+    }
+
     public ManagementAPI newManagementAPI() {
         return new ManagementAPI(properties.getDomain(), managementAPIToken.getAccessToken());
     }

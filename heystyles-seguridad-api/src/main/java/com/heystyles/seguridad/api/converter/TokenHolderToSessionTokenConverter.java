@@ -2,7 +2,6 @@ package com.heystyles.seguridad.api.converter;
 
 import com.auth0.json.auth.TokenHolder;
 import com.heystyles.seguridad.api.config.Auth0Properties;
-import com.heystyles.seguridad.api.util.JwtUtil;
 import domain.SessionToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;

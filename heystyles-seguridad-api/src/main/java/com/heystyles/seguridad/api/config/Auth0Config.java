@@ -24,8 +24,7 @@ public class Auth0Config {
 
     @Bean(name = "authorizationAPIToken")
     public TokenHelper authorizationAPIToken(AuthAPI authAPI) {
-        //return new TokenHelper(authAPI, properties.getTokenAudience());
-        return null;
+        return new TokenHelper(authAPI, properties.getTokenAudience());
     }
 
     @Bean(name = "managementAPIToken")
