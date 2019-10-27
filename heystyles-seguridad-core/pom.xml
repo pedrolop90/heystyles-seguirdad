@@ -33,6 +33,11 @@
             <version>1.5.1</version>
         </dependency>
 
+        <!--Json Utils-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
     </dependencies>
 
 

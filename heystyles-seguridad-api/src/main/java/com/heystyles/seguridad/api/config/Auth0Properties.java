@@ -14,6 +14,8 @@ public class Auth0Properties {
     private String clientSecret;
     private String domain;
     private String clientId;
+    private String audience;
+    private String scope;
     private String authorizationApi;
     private String managementAudience;
     private String urlApi;
@@ -73,5 +75,21 @@ public class Auth0Properties {
 
     public void setPermissionsBase(List<String> permissionsBase) {
         this.permissionsBase = permissionsBase;
+    }
+
+    public String getAudience() {
+        return audience;
+    }
+
+    public void setAudience(String audience) {
+        this.audience = audience;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 }
