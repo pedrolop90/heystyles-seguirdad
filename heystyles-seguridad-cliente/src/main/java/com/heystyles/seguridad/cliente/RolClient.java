@@ -1,13 +1,18 @@
 package com.heystyles.seguridad.cliente;
 
-import dto.RequestRolAuth0;
+import domain.PermisoAuth0;
+import domain.RolAuth0;
+
+import java.util.List;
 
 public interface RolClient {
 
-    Long create(RequestRolAuth0 requestRolAuth0);
+    Long create(RolAuth0 rolAuth0);
 
-    void update(Long rolId, RequestRolAuth0 requestRolAuth0);
+    void update(Long rolId, RolAuth0 rolAuth0);
 
     void delete(Long rolId);
+
+    List<PermisoAuth0> getPermisos(Long rolId);
 
 }

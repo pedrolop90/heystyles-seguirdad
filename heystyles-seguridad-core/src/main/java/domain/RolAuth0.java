@@ -14,7 +14,7 @@ public class RolAuth0  extends DomainBean<Long> {
 
     private String descripcion;
 
-    private List<PermisoAuth0> permisos;
+    private List<Long> permisos;
 
     @Override
     public Long getId() {
@@ -42,11 +42,11 @@ public class RolAuth0  extends DomainBean<Long> {
         this.nombre = nombre;
     }
 
-    public List<PermisoAuth0> getPermisos() {
+    public List<Long> getPermisos() {
         return permisos;
     }
 
-    public void setPermisos(List<PermisoAuth0> permisos) {
+    public void setPermisos(List<Long> permisos) {
         this.permisos = permisos;
     }
 }

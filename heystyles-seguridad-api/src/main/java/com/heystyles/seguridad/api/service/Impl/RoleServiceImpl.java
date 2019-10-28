@@ -1,21 +1,16 @@
 package com.heystyles.seguridad.api.service.Impl;
 
-import com.heystyles.common.service.ConverterService;
 import com.heystyles.seguridad.api.auth0.AuthorizationApi;
 import com.heystyles.seguridad.api.exception.Auth0AssignmentException;
 import com.heystyles.seguridad.api.service.RoleService;
 import com.heystyles.seguridad.api.service.UserService;
 import domain.EstadoUser;
 import domain.RolAuth0;
-import dto.RequestRolAuth0;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RoleServiceImpl implements RoleService {
-
-    @Autowired
-    private ConverterService converterService;
 
     @Autowired
     private UserService userService;
@@ -72,15 +67,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RolAuth0 insert(RequestRolAuth0 requestRolAuth0) {
-        RolAuth0 rolAuth0Create = converterService
-                .convertTo(requestRolAuth0, RolAuth0.class);
-        return authorizationApiImpl.createRol(rolAuth0Create);
+    public RolAuth0 insert(RolAuth0 rolAuth0) {
+        return authorizationApiImpl.createRol(rolAuth0);
     }
 
     @Override
-    public void update(Long rolId, RequestRolAuth0 requestRolAuth0) {
-        authorizationApiImpl.update(rolId, converterService.convertTo(requestRolAuth0, RolAuth0.class));
+    public void update(Long rolId, RolAuth0 rolAuth0) {
+        authorizationApiImpl.update(rolId, rolAuth0);
     }
 
     @Override

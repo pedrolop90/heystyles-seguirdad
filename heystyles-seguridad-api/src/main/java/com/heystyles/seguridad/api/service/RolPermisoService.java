@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RolPermisoService {
 
-    void uppsert(Long rolId, List<PermisoAuth0> permisos);
+    void uppsert(Long rolId, List<Long> permisos);
 
     List<PermisoAuth0> findByRolId(Long rolId);
 }

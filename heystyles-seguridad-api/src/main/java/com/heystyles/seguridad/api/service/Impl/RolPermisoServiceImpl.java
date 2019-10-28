@@ -9,6 +9,8 @@ import com.heystyles.seguridad.api.service.RolPermisoService;
 import domain.PermisoAuth0;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,7 +28,8 @@ public class RolPermisoServiceImpl implements RolPermisoService {
     private ConverterService converterService;
 
     @Override
-    public void uppsert(Long rolId, List<PermisoAuth0> permisos) {
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void uppsert(Long rolId, List<Long> permisos) {
         List<RolPermisoEntity> existing = rolPermisoDao.findByRolId(rolId);
         if (existing.size() == 0) {
             return;
@@ -35,23 +38,23 @@ public class RolPermisoServiceImpl implements RolPermisoService {
         List<RolPermisoEntity> toDelete = new ArrayList<>();
         List<RolPermisoEntity> toSave = new ArrayList<>();
 
-        Set<Long> oldCiudadIds = existing
+        Set<Long> oldPermisosIds = existing
                 .stream()
                 .map(e -> e.getPermiso().getId())
                 .collect(Collectors.toSet());
 
-        Set<PermisoAuth0> newCiudadIds = new HashSet<>(permisos);
+        Set<Long> newPermisosIds = new HashSet<>(permisos);
 
         existing.stream()
-                .filter(p -> !newCiudadIds.contains(p.getPermiso().getId()))
+                .filter(p -> !newPermisosIds.contains(p.getPermiso().getId()))
                 .forEach(p -> toDelete.add(p));
 
-        newCiudadIds.stream()
-                .filter(l -> !oldCiudadIds.contains(l))
+        newPermisosIds.stream()
+                .filter(l -> !oldPermisosIds.contains(l))
                 .forEach(l -> {
                     RolPermisoEntity entity = new RolPermisoEntity();
                     entity.setRol(rolEntity);
-                    entity.setPermiso(new PermisoEntity(l.getId()));
+                    entity.setPermiso(new PermisoEntity(l));
                     toSave.add(entity);
                 });
 

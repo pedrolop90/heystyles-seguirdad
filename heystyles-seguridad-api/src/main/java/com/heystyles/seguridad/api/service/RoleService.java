@@ -2,7 +2,6 @@ package com.heystyles.seguridad.api.service;
 
 import domain.EstadoUser;
 import domain.RolAuth0;
-import dto.RequestRolAuth0;
 
 public interface RoleService {
 
@@ -12,9 +11,9 @@ public interface RoleService {
 
     EstadoUser removeRolToUser(Long userId, Long rolId);
 
-    RolAuth0 insert(RequestRolAuth0 requestRolAuth0);
+    RolAuth0 insert(RolAuth0 rolAuth0);
 
-    void update(Long rolId, RequestRolAuth0 request);
+    void update(Long rolId, RolAuth0 rolAuth0);
 
     void delete(Long rolId);
 }

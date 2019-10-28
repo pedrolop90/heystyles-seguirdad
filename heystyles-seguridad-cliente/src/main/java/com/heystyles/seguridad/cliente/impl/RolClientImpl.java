@@ -2,9 +2,13 @@ package com.heystyles.seguridad.cliente.impl;
 
 import com.heystyles.common.types.IdResponse;
 import com.heystyles.seguridad.cliente.RolClient;
-import dto.RequestRolAuth0;
+import domain.PermisoAuth0;
+import domain.RolAuth0;
+import dto.PermisosResponse;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 public class RolClientImpl implements RolClient {
 
@@ -23,22 +27,30 @@ public class RolClientImpl implements RolClient {
 
 
     @Override
-    public Long create(RequestRolAuth0 requestRolAuth0) {
+    public Long create(RolAuth0 rolAuth0) {
         UriComponentsBuilder urlBuilder = getSecurityUri();
         return client.postForEntity(urlBuilder.toUriString(),
-                                    requestRolAuth0, IdResponse.class).getBody().getData();
+                                    rolAuth0, IdResponse.class).getBody().getData();
     }
 
     @Override
-    public void update(Long rolId, RequestRolAuth0 requestRolAuth0) {
+    public void update(Long rolId, RolAuth0 rolAuth0) {
         UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(String.valueOf(rolId));
-        client.put(urlBuilder.toUriString(), requestRolAuth0);
+        client.put(urlBuilder.toUriString(), rolAuth0);
     }
 
     @Override
     public void delete(Long rolId) {
         UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(String.valueOf(rolId));
         client.delete(urlBuilder.toUriString());
+    }
+
+    @Override
+    public List<PermisoAuth0> getPermisos(Long rolId) {
+        UriComponentsBuilder urlBuilder = getSecurityUri()
+                .pathSegment(String.valueOf(rolId))
+                .pathSegment("permisos");
+        return client.getForEntity(urlBuilder.toUriString(), PermisosResponse.class).getBody().getData();
     }
 
     private UriComponentsBuilder getSecurityUri() {
