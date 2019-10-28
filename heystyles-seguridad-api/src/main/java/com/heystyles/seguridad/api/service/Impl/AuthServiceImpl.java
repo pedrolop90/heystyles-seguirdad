@@ -1,52 +1,49 @@
 package com.heystyles.seguridad.api.service.Impl;
 
-import com.auth0.client.auth.AuthAPI;
-import com.auth0.exception.Auth0Exception;
-import com.auth0.json.auth.TokenHolder;
+import com.heystyles.common.exception.APIExceptions;
 import com.heystyles.common.service.ConverterService;
-import com.heystyles.seguridad.api.config.Auth0Properties;
-import com.heystyles.seguridad.api.exception.Auth0InvalidUserException;
+import com.heystyles.seguridad.api.dao.RolPermisoDao;
+import com.heystyles.seguridad.api.dao.UserDao;
+import com.heystyles.seguridad.api.entity.UserEntity;
+import com.heystyles.seguridad.api.message.MessageKeys;
 import com.heystyles.seguridad.api.service.AuthService;
-import com.heystyles.seguridad.api.util.JwtUtil;
 import domain.Login;
-import domain.LoginHistory;
+import domain.PermisoAuth0;
 import domain.SessionToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
+import java.util.Optional;
+
+import static org.springframework.context.i18n.LocaleContextHolder.getLocale;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
-    private AuthAPI authApi;
+    private MessageSource messageSource;
 
     @Autowired
-    private Auth0Properties auth0Properties;
+    private UserDao userDao;
+
+    @Autowired
+    private RolPermisoDao rolPermisoDao;
 
     @Autowired
     private ConverterService converterService;
 
-    @Autowired
-    private HttpServletRequest request;
-
     @Override
     public SessionToken login(Login login) {
-        try {
-            TokenHolder holder = authApi.login(login.getEmail(), login.getPassword())
-                    .setAudience(auth0Properties.getAudience())
-                    .setScope(auth0Properties.getScope())
-                    .execute();
+        UserEntity userEntity = Optional.ofNullable(userDao.findByEmailAndPassword(login.getEmail(), login.getPassword()))
+                .orElseThrow(() -> APIExceptions.objetoNoEncontrado(
+                        messageSource.getMessage(MessageKeys.USERNAME_PASSWORD_INCORRECTO, null, getLocale())));
 
-            String user = JwtUtil.getUserClaims(holder.getAccessToken());
-            LoginHistory loginHistory = new LoginHistory(user, LocalDateTime.now(), request.getRemoteAddr());
-            //loginService.insert(loginHistory);
-            return converterService.convertTo(holder, SessionToken.class);
-        }
-        catch (Auth0Exception e) {
-            throw new Auth0InvalidUserException("El usuario o la contraseña no coinciden");
-        }
+        SessionToken sessionToken = new SessionToken();
+        sessionToken.setNombre(userEntity.getEmail());
+        sessionToken.setPermisos(converterService.convertTo(
+                rolPermisoDao.findByUserId(userEntity.getId()), PermisoAuth0.class));
+        return sessionToken;
     }
+
 }

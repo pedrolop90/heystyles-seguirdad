@@ -2,13 +2,11 @@ package com.heystyles.seguridad.api.controller;
 
 import com.heystyles.common.response.Responses;
 import com.heystyles.common.types.BaseResponse;
-import com.heystyles.common.types.StringResponse;
+import com.heystyles.common.types.IdResponse;
 import com.heystyles.seguridad.api.service.RoleService;
 import com.heystyles.seguridad.api.service.UserService;
-import com.heystyles.seguridad.api.util.UtilDecode;
 import domain.EstadoUser;
 import domain.UserAuth0;
-import domain.UsuarioAuth0;
 import dto.RemoveRolToUserResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,10 +45,10 @@ public class UserController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK")
     })
-    public ResponseEntity<StringResponse> insert(
+    public ResponseEntity<IdResponse> insert(
             @NotNull @Valid @RequestBody UserAuth0 usuarioAuth0) {
-        String idUser = userService.createUserAuth0(usuarioAuth0);
-        return Responses.responseEntity(new StringResponse(idUser));
+        Long idUser = userService.createUserAuth0(usuarioAuth0);
+        return Responses.responseEntity(new IdResponse(idUser));
     }
 
 
@@ -59,7 +57,7 @@ public class UserController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK")
     })
-    public ResponseEntity<BaseResponse> deleteUsuario(@PathVariable String idUsuario) {
+    public ResponseEntity<BaseResponse> deleteUsuario(@PathVariable Long idUsuario) {
         userService.deleteAuth0User(idUsuario);
         return Responses.successEntity("Usuario eliminado correctamento de Auht0.");
     }
@@ -70,9 +68,8 @@ public class UserController {
             @ApiResponse(code = 201, message = "Rol Asignado Exitosamente.")
     })
     public BaseResponse assignRoleToUser(
-            @NotBlank @PathVariable String userId,
-            @NotBlank @QueryParam("rolNewId") String rolNewId) {
-        userId = UtilDecode.decode(userId);
+            @NotBlank @PathVariable Long userId,
+            @NotBlank @QueryParam("rolNewId") Long rolNewId) {
         roleService.assignRoleToUser(rolNewId, userId);
         return Responses.success("Rol Asignado Exitosamente");
     }
@@ -83,10 +80,9 @@ public class UserController {
             @ApiResponse(code = 200, message = "OK")
     })
     public ResponseEntity<BaseResponse> updateRolUser(
-            @NotBlank @PathVariable String userId,
-            @NotBlank @QueryParam("rolLastId") String rolLastId,
-            @NotBlank @QueryParam("rolNewId") String rolNewId) {
-        userId = UtilDecode.decode(userId);
+            @NotBlank @PathVariable Long userId,
+            @NotBlank @QueryParam("rolLastId") Long rolLastId,
+            @NotBlank @QueryParam("rolNewId") Long rolNewId) {
         roleService.updateRolToUser(userId, rolLastId, rolNewId);
         return Responses.successEntity("Usuario actualizo su rol de forma exitosa.");
     }
@@ -97,9 +93,8 @@ public class UserController {
             @ApiResponse(code = 200, message = "OK")
     })
     public ResponseEntity<RemoveRolToUserResponse> removeRolUser(
-            @NotBlank @PathVariable String userId,
-            @NotBlank @QueryParam("rolLastId") String rolLastId) {
-        userId = UtilDecode.decode(userId);
+            @NotBlank @PathVariable Long userId,
+            @NotBlank @QueryParam("rolLastId") Long rolLastId) {
         EstadoUser estadoUser = roleService.removeRolToUser(userId, rolLastId);
         return Responses.responseEntity(new RemoveRolToUserResponse(estadoUser));
     }
@@ -110,8 +105,7 @@ public class UserController {
             @ApiResponse(code = 200, message = "OK")
     })
     public ResponseEntity<BaseResponse> updateUsuario(
-            @PathVariable String idUsuario, @RequestBody UsuarioAuth0 usuarioAuth0) {
-        idUsuario = UtilDecode.decode(idUsuario);
+            @PathVariable Long idUsuario, @RequestBody UserAuth0 usuarioAuth0) {
         userService.updateUser(idUsuario, usuarioAuth0);
         return Responses.successEntity("Usuario actualizado correctamente en auth0.");
     }

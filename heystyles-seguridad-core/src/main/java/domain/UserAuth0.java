@@ -1,18 +1,21 @@
 package domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.heystyles.common.types.DomainBean;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class UserAuth0 {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class UserAuth0 extends DomainBean<Long> {
 
-    private String userId;
+    private Long id;
 
     @NotNull
     @Size(min = 1, max = 15)
-    private String userName;
+    private String usuario;
 
     @NotNull
     @Size(min = 8, max = 30)
@@ -23,28 +26,24 @@ public class UserAuth0 {
     private String email;
 
     @NotNull
-    private String nombre;
+    private Long roleIdSecurity;
 
-    @NotNull
-    private String apellido;
-
-    @NotNull
-    private String roleIdSecurity;
-
-    public String getUserId() {
-        return userId;
+    @Override
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPassword() {
@@ -63,27 +62,11 @@ public class UserAuth0 {
         this.email = email;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getRoleIdSecurity() {
+    public Long getRoleIdSecurity() {
         return roleIdSecurity;
     }
 
-    public void setRoleIdSecurity(String roleIdSecurity) {
+    public void setRoleIdSecurity(Long roleIdSecurity) {
         this.roleIdSecurity = roleIdSecurity;
     }
 }

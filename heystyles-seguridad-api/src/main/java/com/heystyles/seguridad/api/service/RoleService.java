@@ -6,15 +6,15 @@ import dto.RequestRolAuth0;
 
 public interface RoleService {
 
-    void assignRoleToUser(String roleId, String userAuth0Id);
+    void assignRoleToUser(Long roleId, Long userAuth0Id);
 
-    void updateRolToUser(String userId, String rolLastId, String rolNewId);
+    void updateRolToUser(Long userId, Long rolLastId, Long rolNewId);
 
-    EstadoUser removeRolToUser(String userId, String rolId);
+    EstadoUser removeRolToUser(Long userId, Long rolId);
 
     RolAuth0 insert(RequestRolAuth0 requestRolAuth0);
 
-    void update(String rolId, RequestRolAuth0 request);
+    void update(Long rolId, RequestRolAuth0 request);
 
-    void delete(String rolId);
+    void delete(Long rolId);
 }

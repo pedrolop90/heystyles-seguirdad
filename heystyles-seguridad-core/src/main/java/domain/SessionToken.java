@@ -1,60 +1,29 @@
 package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.heystyles.common.types.DomainBean;
 
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SessionToken extends DomainBean<String> {
-
-    private String id;
-    private String token;
-    private List<String> groups;
-    private List<String> permissions;
-    private String name;
+public class SessionToken {
+    private List<PermisoAuth0> permisos;
+    private String nombre;
     private String lastLogin;
 
-    public String getToken() {
-        return token;
+    public List<PermisoAuth0> getPermisos() {
+        return permisos;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setPermisos(List<PermisoAuth0> permisos) {
+        this.permisos = permisos;
     }
 
-    @Override
-    public String getId() {
-        return id;
+    public String getNombre() {
+        return nombre;
     }
 
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public List<String> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<String> groups) {
-        this.groups = groups;
-    }
-
-    public List<String> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<String> permissions) {
-        this.permissions = permissions;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getLastLogin() {

@@ -12,8 +12,6 @@ public class RolAuth0Extended {
     private String id;
     private String name;
     private String description;
-    private String applicationType;
-    private String applicationId;
     private List<String> permissions;
 
     public String getId() {
@@ -38,22 +36,6 @@ public class RolAuth0Extended {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getApplicationType() {
-        return applicationType;
-    }
-
-    public void setApplicationType(String applicationType) {
-        this.applicationType = applicationType;
-    }
-
-    public String getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(String applicationId) {
-        this.applicationId = applicationId;
     }
 
     public List<String> getPermissions() {

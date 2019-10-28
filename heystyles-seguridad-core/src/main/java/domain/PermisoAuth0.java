@@ -3,18 +3,12 @@ package domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.heystyles.common.types.DomainBean;
 
-import java.util.List;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RolAuth0  extends DomainBean<Long> {
+public class PermisoAuth0 extends DomainBean<Long> {
 
     private Long id;
-
     private String nombre;
-
     private String descripcion;
-
-    private List<PermisoAuth0> permisos;
 
     @Override
     public Long getId() {
@@ -26,14 +20,6 @@ public class RolAuth0  extends DomainBean<Long> {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -42,11 +28,11 @@ public class RolAuth0  extends DomainBean<Long> {
         this.nombre = nombre;
     }
 
-    public List<PermisoAuth0> getPermisos() {
-        return permisos;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setPermisos(List<PermisoAuth0> permisos) {
-        this.permisos = permisos;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

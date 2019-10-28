@@ -1,14 +1,14 @@
 package com.heystyles.seguridad.api.service;
 
+import com.heystyles.common.service.Service;
 import domain.UserAuth0;
-import domain.UsuarioAuth0;
 
-public interface UserService {
+public interface UserService extends Service<UserAuth0, Long> {
 
-    String createUserAuth0(UserAuth0 userAuth0);
+    Long createUserAuth0(UserAuth0 userAuth0);
 
-    void deleteAuth0User(String idUsuario);
+    void deleteAuth0User(Long idUsuario);
 
-    void updateUser(String auth0Id, UsuarioAuth0 user);
+    void updateUser(Long auth0Id, UserAuth0 user);
 
 }

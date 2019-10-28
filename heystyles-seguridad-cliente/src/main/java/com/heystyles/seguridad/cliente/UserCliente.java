@@ -2,17 +2,16 @@ package com.heystyles.seguridad.cliente;
 
 import domain.EstadoUser;
 import domain.UserAuth0;
-import domain.UsuarioAuth0;
 
 public interface UserCliente {
 
-    String createUser(UserAuth0 userAuth0);
+    Long createUser(UserAuth0 userAuth0);
 
-    void updateUser(String idUsuario, UsuarioAuth0 usuario);
+    void updateUser(Long idUsuario, UserAuth0 usuario);
 
-    void assignRolToUser(String userId, String rolId);
+    void assignRolToUser(Long userId, Long rolId);
 
-    void updateRolUser(String userId, String rolLastId, String rolNewId);
+    void updateRolUser(Long userId, Long rolLastId, Long rolNewId);
 
-    EstadoUser removeRolToUser(String userId, String rolId);
+    EstadoUser removeRolToUser(Long userId, Long rolId);
 }

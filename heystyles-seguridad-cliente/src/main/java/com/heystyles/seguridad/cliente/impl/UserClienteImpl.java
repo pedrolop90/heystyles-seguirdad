@@ -1,11 +1,10 @@
 package com.heystyles.seguridad.cliente.impl;
 
 import com.heystyles.common.types.BaseResponse;
-import com.heystyles.common.types.StringResponse;
+import com.heystyles.common.types.IdResponse;
 import com.heystyles.seguridad.cliente.UserCliente;
 import domain.EstadoUser;
 import domain.UserAuth0;
-import domain.UsuarioAuth0;
 import dto.RemoveRolToUserResponse;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -28,31 +27,31 @@ public class UserClienteImpl implements UserCliente {
     }
 
     @Override
-    public String createUser(UserAuth0 usuario) {
+    public Long createUser(UserAuth0 usuario) {
         UriComponentsBuilder urlBuilder = getSecurityUri();
-        return client.postForEntity(urlBuilder.toUriString(), usuario, StringResponse.class).getBody().getData();
+        return client.postForEntity(urlBuilder.toUriString(), usuario, IdResponse.class).getBody().getData();
     }
 
     @Override
-    public void updateUser(String idUsuario, UsuarioAuth0 usuario) {
-        UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(idUsuario);
+    public void updateUser(Long idUsuario, UserAuth0 usuario) {
+        UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(String.valueOf(idUsuario));
         client.put(urlBuilder.toUriString(), usuario);
     }
 
 
     @Override
-    public void assignRolToUser(String userId, String rolId) {
+    public void assignRolToUser(Long userId, Long rolId) {
         UriComponentsBuilder urlBuilder = getSecurityUri()
-                .pathSegment(userId)
+                .pathSegment(String.valueOf(userId))
                 .pathSegment("rol")
                 .queryParam("rolNewId", rolId);
         client.postForEntity(urlBuilder.toUriString(), null, BaseResponse.class);
     }
 
     @Override
-    public void updateRolUser(String userId, String rolLastId, String rolNewId) {
+    public void updateRolUser(Long userId, Long rolLastId, Long rolNewId) {
         UriComponentsBuilder urlBuilder = getSecurityUri()
-                .pathSegment(userId)
+                .pathSegment(String.valueOf(userId))
                 .pathSegment("rol")
                 .queryParam("rolLastId", rolLastId)
                 .queryParam("rolNewId", rolNewId);
@@ -61,9 +60,9 @@ public class UserClienteImpl implements UserCliente {
 
 
     @Override
-    public EstadoUser removeRolToUser(String userId, String rolId) {
+    public EstadoUser removeRolToUser(Long userId, Long rolId) {
         UriComponentsBuilder urlBuilder = getSecurityUri()
-                .pathSegment(userId)
+                .pathSegment(String.valueOf(userId))
                 .pathSegment("rol")
                 .queryParam("rolLastId", rolId);
         ResponseEntity<RemoveRolToUserResponse> response = client.exchange(urlBuilder.toUriString(),

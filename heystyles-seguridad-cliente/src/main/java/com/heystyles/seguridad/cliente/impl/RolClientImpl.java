@@ -1,6 +1,6 @@
 package com.heystyles.seguridad.cliente.impl;
 
-import com.heystyles.common.types.StringResponse;
+import com.heystyles.common.types.IdResponse;
 import com.heystyles.seguridad.cliente.RolClient;
 import dto.RequestRolAuth0;
 import org.springframework.web.client.RestTemplate;
@@ -23,21 +23,21 @@ public class RolClientImpl implements RolClient {
 
 
     @Override
-    public String create(RequestRolAuth0 requestRolAuth0) {
+    public Long create(RequestRolAuth0 requestRolAuth0) {
         UriComponentsBuilder urlBuilder = getSecurityUri();
         return client.postForEntity(urlBuilder.toUriString(),
-                requestRolAuth0, StringResponse.class).getBody().getData();
+                                    requestRolAuth0, IdResponse.class).getBody().getData();
     }
 
     @Override
-    public void update(String rolId, RequestRolAuth0 requestRolAuth0) {
-        UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(rolId);
+    public void update(Long rolId, RequestRolAuth0 requestRolAuth0) {
+        UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(String.valueOf(rolId));
         client.put(urlBuilder.toUriString(), requestRolAuth0);
     }
 
     @Override
-    public void delete(String rolId) {
-        UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(rolId);
+    public void delete(Long rolId) {
+        UriComponentsBuilder urlBuilder = getSecurityUri().pathSegment(String.valueOf(rolId));
         client.delete(urlBuilder.toUriString());
     }
 
