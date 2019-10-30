@@ -1,6 +1,6 @@
 package com.heystyles.seguridad.cliente;
 
-import domain.PermisoAuth0;
+import domain.PermisoAuth0Extended;
 import domain.RolAuth0;
 
 import java.util.List;
@@ -13,6 +13,6 @@ public interface RolClient {
 
     void delete(Long rolId);
 
-    List<PermisoAuth0> getPermisos(Long rolId);
+    List<PermisoAuth0Extended> getPermisos(Long rolId);
 
 }

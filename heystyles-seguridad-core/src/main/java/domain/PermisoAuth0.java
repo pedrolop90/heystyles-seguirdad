@@ -9,6 +9,7 @@ public class PermisoAuth0 extends DomainBean<Long> {
     private Long id;
     private String nombre;
     private String descripcion;
+    private TipoAccionPermiso accion;
 
     @Override
     public Long getId() {
@@ -34,5 +35,13 @@ public class PermisoAuth0 extends DomainBean<Long> {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public TipoAccionPermiso getAccion() {
+        return accion;
+    }
+
+    public void setAccion(TipoAccionPermiso accion) {
+        this.accion = accion;
     }
 }

@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name = "USER")
 public class UserEntity extends com.heystyles.common.types.Entity<Long> {
 
-    public interface Attributes extends com.heystyles.common.types.Entity.Attributes{
-
+    public interface Attributes extends com.heystyles.common.types.Entity.Attributes {
+        String USERNAME = "usuario";
     }
 
     @Id

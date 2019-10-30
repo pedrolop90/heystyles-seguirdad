@@ -1,7 +1,6 @@
 package com.heystyles.seguridad.api.service.Impl;
 
 import com.heystyles.common.service.impl.ServiceImpl;
-import com.heystyles.mail.client.MailClient;
 import com.heystyles.seguridad.api.async.EnviarPasswordInicialUsuarioData;
 import com.heystyles.seguridad.api.async.EnviarPasswordInicialUsuarioTask;
 import com.heystyles.seguridad.api.dao.UserDao;
@@ -24,9 +23,6 @@ public class UserServiceImpl extends ServiceImpl<UserAuth0, UserEntity, Long> im
 
     @Autowired
     private UserDao userDao;
-
-    @Autowired
-    private MailClient mailClient;
 
     @Autowired
     private ApplicationContext context;

@@ -2,8 +2,8 @@ package com.heystyles.seguridad.api.controller;
 
 import com.heystyles.common.response.Responses;
 import com.heystyles.seguridad.api.service.PermisoService;
-import domain.PermisoAuth0;
-import dto.PermisosResponse;
+import domain.PermisoAuth0Extended;
+import dto.PermisosExtendedResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -26,15 +26,15 @@ public class PermisoController {
     @Autowired
     private PermisoService permisoService;
 
-    @ApiOperation(value = "Permite Listar todas los Permisos de la base de datos")
+    @ApiOperation(value = "Permite Listar todas los Permisos Extended de la base de datos")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Permisos Encontrados."),
             @ApiResponse(code = 404, message = "Permisos no encontrados.")
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PermisosResponse> getPersonas() {
-        List<PermisoAuth0> personas = permisoService.findAll();
-        return Responses.responseEntity(new PermisosResponse(personas));
+    public ResponseEntity<PermisosExtendedResponse> getPersonas() {
+        List<PermisoAuth0Extended> permisosExtended = permisoService.getPermisosExtended();
+        return Responses.responseEntity(new PermisosExtendedResponse(permisosExtended));
     }
 
 }

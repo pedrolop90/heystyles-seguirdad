@@ -8,11 +8,13 @@ import com.heystyles.seguridad.api.dao.RolDao;
 import com.heystyles.seguridad.api.entity.PermisoEntity;
 import com.heystyles.seguridad.api.service.PermisoService;
 import domain.PermisoAuth0;
+import domain.PermisoAuth0Extended;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.context.i18n.LocaleContextHolder.getLocale;
@@ -40,6 +42,11 @@ public class PermisoServiceImpl
         return Optional.ofNullable(super.findById(permisoId))
                 .orElseThrow(() -> APIExceptions.objetoNoEncontrado(
                         messageSource.getMessage(MessageKeys.NOT_FOUND, null, getLocale())));
+    }
+
+    @Override
+    public List<PermisoAuth0Extended> getPermisosExtended() {
+        return getConverterService().convertTo(permisoDao.findAll(), PermisoAuth0Extended.class);
     }
 
 }

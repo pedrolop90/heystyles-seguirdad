@@ -2,9 +2,9 @@ package com.heystyles.seguridad.cliente.impl;
 
 import com.heystyles.common.types.IdResponse;
 import com.heystyles.seguridad.cliente.RolClient;
-import domain.PermisoAuth0;
+import domain.PermisoAuth0Extended;
 import domain.RolAuth0;
-import dto.PermisosResponse;
+import dto.PermisosExtendedResponse;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -46,11 +46,11 @@ public class RolClientImpl implements RolClient {
     }
 
     @Override
-    public List<PermisoAuth0> getPermisos(Long rolId) {
+    public List<PermisoAuth0Extended> getPermisos(Long rolId) {
         UriComponentsBuilder urlBuilder = getSecurityUri()
                 .pathSegment(String.valueOf(rolId))
                 .pathSegment("permisos");
-        return client.getForEntity(urlBuilder.toUriString(), PermisosResponse.class).getBody().getData();
+        return client.getForEntity(urlBuilder.toUriString(), PermisosExtendedResponse.class).getBody().getData();
     }
 
     private UriComponentsBuilder getSecurityUri() {

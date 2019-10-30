@@ -7,8 +7,8 @@ import com.heystyles.seguridad.api.dao.UserDao;
 import com.heystyles.seguridad.api.entity.UserEntity;
 import com.heystyles.seguridad.api.message.MessageKeys;
 import com.heystyles.seguridad.api.service.AuthService;
+import com.heystyles.seguridad.api.service.MenuService;
 import domain.Login;
-import domain.PermisoAuth0;
 import domain.SessionToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -31,6 +31,9 @@ public class AuthServiceImpl implements AuthService {
     private RolPermisoDao rolPermisoDao;
 
     @Autowired
+    private MenuService menuService;
+
+    @Autowired
     private ConverterService converterService;
 
     @Override
@@ -40,9 +43,8 @@ public class AuthServiceImpl implements AuthService {
                         messageSource.getMessage(MessageKeys.USERNAME_PASSWORD_INCORRECTO, null, getLocale())));
 
         SessionToken sessionToken = new SessionToken();
-        sessionToken.setNombre(userEntity.getEmail());
-        sessionToken.setPermisos(converterService.convertTo(
-                rolPermisoDao.findByUserId(userEntity.getId()), PermisoAuth0.class));
+        sessionToken.setEmail(userEntity.getEmail());
+        sessionToken.setMenuExtended(menuService.getMenuByUsuario(userEntity.getId()));
         return sessionToken;
     }
 

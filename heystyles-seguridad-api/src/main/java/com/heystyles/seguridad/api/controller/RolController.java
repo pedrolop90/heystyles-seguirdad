@@ -5,9 +5,9 @@ import com.heystyles.common.types.BaseResponse;
 import com.heystyles.common.types.IdResponse;
 import com.heystyles.seguridad.api.service.RolPermisoService;
 import com.heystyles.seguridad.api.service.RoleService;
-import domain.PermisoAuth0;
+import domain.PermisoAuth0Extended;
 import domain.RolAuth0;
-import dto.PermisosResponse;
+import dto.PermisosExtendedResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -78,8 +78,8 @@ public class RolController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Rol Eliminado Exitosamente.")
     })
-    public ResponseEntity<PermisosResponse> getPermisos(@NotBlank @PathVariable Long rolId) {
-        List<PermisoAuth0> data = rolPermisoService.findByRolId(rolId);
-        return Responses.responseEntity(new PermisosResponse(data));
+    public ResponseEntity<PermisosExtendedResponse> getPermisos(@NotBlank @PathVariable Long rolId) {
+        List<PermisoAuth0Extended> permisosExtended = rolPermisoService.findByRolId(rolId);
+        return Responses.responseEntity(new PermisosExtendedResponse(permisosExtended));
     }
 }

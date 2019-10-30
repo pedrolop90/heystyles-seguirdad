@@ -17,6 +17,7 @@ public class UserRolEntity extends com.heystyles.common.types.Entity<Long> {
     public interface Attributes extends com.heystyles.common.types.Entity.Attributes {
         String USER = "user";
         String USER_ID = USER + "." + UserEntity.Attributes.ID;
+        String USER_USERNAME = USER + "." + UserEntity.Attributes.USERNAME;
         String ROL = "rol";
         String ROL_ID = ROL + "." + RolEntity.Attributes.ID;
         String ROL_ROL_PERMISOS = ROL + "." + RolEntity.Attributes.ROL_PERMISOS;

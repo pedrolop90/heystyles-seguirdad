@@ -2,35 +2,24 @@ package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.List;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SessionToken {
-    private List<PermisoAuth0> permisos;
-    private String nombre;
-    private String lastLogin;
+    private MenuExtended menuExtended;
+    private String email;
 
-    public List<PermisoAuth0> getPermisos() {
-        return permisos;
+    public MenuExtended getMenuExtended() {
+        return menuExtended;
     }
 
-    public void setPermisos(List<PermisoAuth0> permisos) {
-        this.permisos = permisos;
+    public void setMenuExtended(MenuExtended menuExtended) {
+        this.menuExtended = menuExtended;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(String lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

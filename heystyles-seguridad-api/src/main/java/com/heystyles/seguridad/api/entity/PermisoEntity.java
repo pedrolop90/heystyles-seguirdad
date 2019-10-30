@@ -1,10 +1,17 @@
 package com.heystyles.seguridad.api.entity;
 
+import domain.TipoAccionPermiso;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +28,14 @@ public class PermisoEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Column(name = "DESCRIPCION")
     private String descripcion;
+
+    @Column(name = "ACCION")
+    @Enumerated(value = EnumType.STRING)
+    private TipoAccionPermiso accion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_MENU")
+    private MenuEntity menu;
 
     public PermisoEntity() {
     }
@@ -53,5 +68,21 @@ public class PermisoEntity extends com.heystyles.common.types.Entity<Long> {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public TipoAccionPermiso getAccion() {
+        return accion;
+    }
+
+    public void setAccion(TipoAccionPermiso accion) {
+        this.accion = accion;
+    }
+
+    public MenuEntity getMenu() {
+        return menu;
+    }
+
+    public void setMenu(MenuEntity menu) {
+        this.menu = menu;
     }
 }

@@ -13,6 +13,7 @@ public class PermisoEntityToPermisoAuth0Converter implements Converter<PermisoEn
         bean.setId(entity.getId());
         bean.setNombre(entity.getNombre());
         bean.setDescripcion(entity.getDescripcion());
+        bean.setAccion(entity.getAccion());
         return bean;
     }
 }

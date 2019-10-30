@@ -6,7 +6,7 @@ import com.heystyles.seguridad.api.entity.PermisoEntity;
 import com.heystyles.seguridad.api.entity.RolEntity;
 import com.heystyles.seguridad.api.entity.RolPermisoEntity;
 import com.heystyles.seguridad.api.service.RolPermisoService;
-import domain.PermisoAuth0;
+import domain.PermisoAuth0Extended;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -63,9 +63,9 @@ public class RolPermisoServiceImpl implements RolPermisoService {
     }
 
     @Override
-    public List<PermisoAuth0> findByRolId(Long rolId) {
+    public List<PermisoAuth0Extended> findByRolId(Long rolId) {
         return converterService.convertTo(
                 rolPermisoDao.findByRolId(rolId).stream().map(RolPermisoEntity::getPermiso).collect(Collectors.toList()),
-                PermisoAuth0.class);
+                PermisoAuth0Extended.class);
     }
 }

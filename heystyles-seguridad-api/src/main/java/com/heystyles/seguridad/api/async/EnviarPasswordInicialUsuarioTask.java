@@ -44,7 +44,7 @@ public class EnviarPasswordInicialUsuarioTask implements Runnable {
         mail.setText(body);
         mail.addToAddress(data.getEmail());
         try {
-            mailClient.sendMail(mail);
+            mailClient.sendMailImmediate(mail);
             LOGGER.info("Envio de mail a " + data.getEmail());
         }
         catch (Exception e) {

@@ -25,7 +25,7 @@ public class ClientConfig {
     }
 
     @Bean
-    public MailClient mailClient(RestTemplate restTemplate){
+    public MailClient mailClient(RestTemplate restTemplate) {
         return new MailClientImpl(clientProperties.getMicroSeguridad(), restTemplate);
     }
 }
