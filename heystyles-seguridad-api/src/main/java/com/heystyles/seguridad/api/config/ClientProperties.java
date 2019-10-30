@@ -9,9 +9,19 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties("client")
 public class ClientProperties {
 
+    private String microSeguridad;
+
     private int connectionTimeout;
 
     private int readTimeout;
+
+    public String getMicroSeguridad() {
+        return microSeguridad;
+    }
+
+    public void setMicroSeguridad(String microSeguridad) {
+        this.microSeguridad = microSeguridad;
+    }
 
     public int getConnectionTimeout() {
         return connectionTimeout;
@@ -28,4 +38,6 @@ public class ClientProperties {
     public void setReadTimeout(int readTimeout) {
         this.readTimeout = readTimeout;
     }
+
+
 }
