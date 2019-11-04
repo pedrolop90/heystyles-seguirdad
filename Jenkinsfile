@@ -4,17 +4,8 @@ pipeline {
     stages {
         stage ('clean') {
             steps {
-                withMaven(maven : 'maven_3.6.0') {
-                    sh 'mvn clean'
-                }
+                 sh 'mvn clean install'
             }
-        }
-        stage ('install') {
-             steps {
-                  withMaven(maven : 'maven_3.6.0') {
-                  sh 'mvn install'
-               }
-           }
         }
     }
 }
