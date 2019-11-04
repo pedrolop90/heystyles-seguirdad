@@ -14,5 +14,11 @@ pipeline {
                  sh 'mvn install'
             }
         }
+        stage ('install client') {
+              steps {
+                 sh 'cd heystyles-seguridad-core'
+                 sh 'mvn install'
+             }
+        }
     }
 }
