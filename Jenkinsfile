@@ -4,7 +4,7 @@ pipeline {
     stages {
          stage ('install core') {
               steps {
-                  sh 'cd heystyles-seguridad-api'
+                  sh 'cd heystyles-seguridad-core'
                   sh 'mvn install'
              }
          }
@@ -16,7 +16,7 @@ pipeline {
         }
         stage ('install client') {
               steps {
-                 sh 'cd heystyles-seguridad-core'
+                 sh 'cd heystyles-seguridad-cliente'
                  sh 'mvn install'
              }
         }
