@@ -1,6 +1,7 @@
 package com.heystyles.seguridad.api.service.Impl;
 
 import com.heystyles.common.service.ConverterService;
+import com.heystyles.seguridad.api.dao.RolDao;
 import com.heystyles.seguridad.api.dao.RolPermisoDao;
 import com.heystyles.seguridad.api.entity.PermisoEntity;
 import com.heystyles.seguridad.api.entity.RolEntity;
@@ -25,16 +26,19 @@ public class RolPermisoServiceImpl implements RolPermisoService {
     private RolPermisoDao rolPermisoDao;
 
     @Autowired
+    private RolDao rolDao;
+
+    @Autowired
     private ConverterService converterService;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void uppsert(Long rolId, List<Long> permisos) {
-        List<RolPermisoEntity> existing = rolPermisoDao.findByRolId(rolId);
-        if (existing.size() == 0) {
+        if (permisos == null || permisos.size() == 0) {
             return;
         }
-        RolEntity rolEntity = existing.get(0).getRol();
+        List<RolPermisoEntity> existing = rolPermisoDao.findByRolId(rolId);
+        RolEntity rolEntity = rolDao.findOne(rolId);
         List<RolPermisoEntity> toDelete = new ArrayList<>();
         List<RolPermisoEntity> toSave = new ArrayList<>();
 
