@@ -1,9 +1,10 @@
-pipeline{
+pipeline {
     agent any
+
     stages {
-        stage('install') {
+        stage ('install') {
             steps {
-                withMaven(maven: '3.6.0') {
+                withMaven(maven : 'maven_3.6.0') {
                     sh 'mvn clean install'
                 }
             }
