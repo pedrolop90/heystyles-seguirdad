@@ -77,9 +77,9 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> APIExceptions.objetoNoEncontrado(
                         messageSource.getMessage(MessageKeys.USER_EMAIL_NOT_FOUND,
                                                  new String[]{correo}, getLocale())));
-        String newPassword = generarNumero.generar(CANTIDAD_DIGITOS);
+        userEntity.setPassword(generarNumero.generar(CANTIDAD_DIGITOS));
         userService.updateUser(userEntity.getId(), converterService.convertTo(userEntity, UserAuth0.class));
-        enviarEmail(userEntity.getEmail(), newPassword);
+        enviarEmail(userEntity.getEmail(), userEntity.getPassword());
     }
 
     private void enviarEmail(String email, String password) {
