@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SessionToken {
     private MenuExtended menuExtended;
-    private String email;
+    private String usuario;
 
     public MenuExtended getMenuExtended() {
         return menuExtended;
@@ -15,11 +15,11 @@ public class SessionToken {
         this.menuExtended = menuExtended;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

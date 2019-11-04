@@ -66,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
                         messageSource.getMessage(MessageKeys.USERNAME_PASSWORD_INCORRECTO, null, getLocale())));
 
         SessionToken sessionToken = new SessionToken();
-        sessionToken.setEmail(userEntity.getEmail());
+        sessionToken.setUsuario(userEntity.getUsuario());
         sessionToken.setMenuExtended(menuService.getMenuByUsuario(userEntity.getId()));
         return sessionToken;
     }
