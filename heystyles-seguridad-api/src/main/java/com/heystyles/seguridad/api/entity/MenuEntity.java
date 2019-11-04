@@ -27,26 +27,26 @@ public class MenuEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "NOMBRE", nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "PATH", nullable = false)
+    @Column(name = "path", nullable = false)
     private String path;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_MENU_PADRE")
+    @JoinColumn(name = "id_menu_padre")
     private MenuEntity menuPadre;
 
-    @Column(name = "ID_ICONO")
+    @Column(name = "id_icono")
     private String icono;
 
-    @Column(name = "POSICION")
+    @Column(name = "posicion")
     private Long posicion;
 
-    @Column(name = "ESTADO")
+    @Column(name = "estado")
     @Enumerated(value = EnumType.STRING)
     private Estado estado;
 

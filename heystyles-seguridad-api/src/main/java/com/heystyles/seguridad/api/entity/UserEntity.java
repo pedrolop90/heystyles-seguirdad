@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "user")
 public class UserEntity extends com.heystyles.common.types.Entity<Long> {
 
     public interface Attributes extends com.heystyles.common.types.Entity.Attributes {
@@ -17,16 +17,16 @@ public class UserEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "USUARIO")
+    @Column(name = "usuario")
     private String usuario;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     private String email;
 
 

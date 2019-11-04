@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "ROL")
+@Table(name = "rol")
 public class RolEntity extends com.heystyles.common.types.Entity<Long> {
 
     public interface Attributes extends com.heystyles.common.types.Entity.Attributes {
@@ -22,13 +22,13 @@ public class RolEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "DESCRIPCION")
+    @Column(name = "descripcion")
     private String descripcion;
 
     @OneToMany(mappedBy = "rol", fetch = FetchType.LAZY)

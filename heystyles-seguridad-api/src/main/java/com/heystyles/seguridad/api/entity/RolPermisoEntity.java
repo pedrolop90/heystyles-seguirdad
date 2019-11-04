@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ROL_PERMISO")
+@Table(name = "rol_permiso")
 public class RolPermisoEntity extends com.heystyles.common.types.Entity<Long> {
 
     public interface Attributes extends com.heystyles.common.types.Entity.Attributes {
@@ -21,15 +21,15 @@ public class RolPermisoEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_ROL", nullable = false)
+    @JoinColumn(name = "id_rol", nullable = false)
     private RolEntity rol;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_PERMISO", nullable = false)
+    @JoinColumn(name = "id_permiso", nullable = false)
     private PermisoEntity permiso;
 
     @Override

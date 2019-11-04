@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER_ROL")
+@Table(name = "user_rol")
 public class UserRolEntity extends com.heystyles.common.types.Entity<Long> {
 
     public interface Attributes extends com.heystyles.common.types.Entity.Attributes {
@@ -29,16 +29,16 @@ public class UserRolEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_USER", nullable = false)
+    @JoinColumn(name = "id_user", nullable = false)
     private UserEntity user;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_ROL", nullable = false)
+    @JoinColumn(name = "id_rol", nullable = false)
     private RolEntity rol;
 
     @Override

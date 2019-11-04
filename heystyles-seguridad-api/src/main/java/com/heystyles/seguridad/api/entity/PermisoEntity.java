@@ -15,21 +15,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PERMISO")
+@Table(name = "permiso")
 public class PermisoEntity extends com.heystyles.common.types.Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "DESCRIPCION")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "ACCION")
+    @Column(name = "accion")
     @Enumerated(value = EnumType.STRING)
     private TipoAccionPermiso accion;
 
