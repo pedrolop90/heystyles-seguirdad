@@ -7,4 +7,5 @@ public interface AuthService {
 
     SessionToken login(Login login);
 
+    void resetPassword(String correo);
 }
