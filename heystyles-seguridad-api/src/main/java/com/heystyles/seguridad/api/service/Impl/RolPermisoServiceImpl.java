@@ -34,7 +34,7 @@ public class RolPermisoServiceImpl implements RolPermisoService {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void uppsert(Long rolId, List<Long> permisos) {
-        if (permisos == null || permisos.size() == 0) {
+        if (permisos == null) {
             return;
         }
         List<RolPermisoEntity> existing = rolPermisoDao.findByRolId(rolId);
