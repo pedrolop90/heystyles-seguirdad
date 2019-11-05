@@ -81,6 +81,12 @@ public class AuthorizationApiImpl
     }
 
     @Override
+    public void update(Long id, RolAuth0 rolAuth0) {
+        super.update(id, rolAuth0);
+        rolPermisoService.uppsert(id, rolAuth0.getPermisos());
+    }
+
+    @Override
     public List<RolAuth0> getRoles() {
         return findAll();
     }
