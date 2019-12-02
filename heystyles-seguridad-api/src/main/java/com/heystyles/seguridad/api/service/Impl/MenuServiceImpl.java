@@ -6,6 +6,7 @@ import com.heystyles.seguridad.api.dao.RolPermisoDao;
 import com.heystyles.seguridad.api.entity.MenuEntity;
 import com.heystyles.seguridad.api.entity.PermisoEntity;
 import com.heystyles.seguridad.api.service.MenuService;
+import domain.Estado;
 import domain.MenuExtended;
 import domain.PermisoAuth0;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +47,13 @@ public class MenuServiceImpl
         List<MenuExtended> listResponse = new ArrayList<>();
         if (menuExtendeds != null && menuExtendeds.size() > 0) {
             menuExtendeds.forEach(menu -> {
-                if (mapData.containsKey(menu.getId())) {
-                    List<PermisoAuth0> permisos = getConverterService().convertTo(mapData.get(menu.getId()), PermisoAuth0.class);
-                    menu.setHijos(construirMenu(mapData, menu.getHijos()));
-                    menu.setPermisos(permisos);
-                    listResponse.add(menu);
+                if (menu.getEstado().compareTo(Estado.ACTIVO) == 0) {
+                    if (mapData.containsKey(menu.getId())) {
+                        List<PermisoAuth0> permisos = getConverterService().convertTo(mapData.get(menu.getId()), PermisoAuth0.class);
+                        menu.setHijos(construirMenu(mapData, menu.getHijos()));
+                        menu.setPermisos(permisos);
+                        listResponse.add(menu);
+                    }
                 }
             });
         }
